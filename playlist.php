@@ -120,6 +120,8 @@ curl_close($cURLConnection);
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST');
+header('Access-Control-Allow-Headers: *');
 echo json_encode($return);
 
 function checkStatus($c, $result) {
@@ -128,6 +130,8 @@ function checkStatus($c, $result) {
     if ($result === FALSE || $status > 299) {
         header('Content-Type: application/json');
         header('Access-Control-Allow-Origin: *');
+	header('Access-Control-Allow-Methods: GET, POST');
+	header('Access-Control-Allow-Headers: *');
         $error = array('error' => $result);
         error_log('CURL ERROR: ' . $error);
         echo json_encode($error);
