@@ -63,9 +63,7 @@ if (strlen($name) == 0) {
 $trackUris = explode(',', $ids);
 shuffle($trackUris);
 for($i=0; $i<sizeof($trackUris); $i++) {
-    if(strlen($trackUris[$i]) > 5) {
-        $trackUris[$i] = 'spotify:track:' . $trackUris[$i];
-    }
+    $trackUris[$i] = 'spotify:track:' . $trackUris[$i];
 }
 
 $playlistId = '';
