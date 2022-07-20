@@ -5,7 +5,7 @@ require_once(__DIR__ . '/authUtil.php');
 $code = $_GET['code'];
 $filePrefix = $_GET['state'];
 session_id($filePrefix);
-session_save_path('/tmp');
+session_save_path(SESSION_DIR);
 session_start();
 //error_log("Session (m) " . $filePrefix);
 //error_log('Stored data: ' . $_SESSION[$filePrefix]);
