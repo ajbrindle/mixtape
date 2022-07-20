@@ -141,10 +141,9 @@ function checkStatus($c, $result) {
     
     if ($result === FALSE || $status > 299) {
         header('Content-Type: application/json');
-        header('Access-Control-Allow-Origin: *');
-	header('Access-Control-Allow-Methods: GET, POST');
-	header('Access-Control-Allow-Headers: *');
-        $error = array('error' => $result);
+        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+        header('Access-Control-Allow-Credentials: true');
+	$error = array('error' => $result);
         error_log('CURL ERROR: ' . $error);
         echo json_encode($error);
         http_response_code($status);
