@@ -4,6 +4,12 @@ require_once(__DIR__ . '/authUtil.php');
 
 $code = $_GET['code'];
 $filePrefix = $_GET['state'];
+session_id($filePrefix);
+session_start();
+//error_log("Session (m) " . $filePrefix);
+//error_log('Stored data: ' . $_SESSION[$filePrefix]);
+//exit(0);
+
 $redirect = 'https://timstwitterlisteningparty.com/pages/mixtape.html';
 if (strpos($_SERVER['DOCUMENT_ROOT'], 'lbavyjjs') > 0) {
     $redirect = 'http://sk7software.co.uk/listeningparty/main/pages/mixtape.html';
@@ -28,20 +34,20 @@ $userInfo = json_decode($result, TRUE);
 $userId = $userInfo['id'];
 
 // Get track ids
-$fileName = '/mix_files/' . $filePrefix . '.txt';
-$contents = file_get_contents($fileName);
-
-if ($contents === FALSE) {
-    http_response_code(500);
-    echo '{"error": "Could not find track details"}';
-    die();
-}
-$lines = explode(PHP_EOL, $contents);
+//$fileName = '/mix_files/' . $filePrefix . '.txt';
+//$contents = file_get_contents($fileName);
+//
+//if ($contents === FALSE) {
+//    http_response_code(500);
+//    echo '{"error": "Could not find track details"}';
+//    die();
+//}
+$lines = explode(';', $contents);
 $ids = $lines[0];
 $name = $lines[1];
 $imageNum = $lines[2];
 $imageFile = '';
-unlink($fileName);
+//unlink($fileName);
 
 if ($imageNum == 1) {
     $imageFile = 'ttlp-tape.jpg';

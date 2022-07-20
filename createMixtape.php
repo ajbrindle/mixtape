@@ -8,13 +8,22 @@ $imageNum = $_POST['image'];
 
 $bytes = openssl_random_pseudo_bytes(16);
 $code = bin2hex($bytes);
-$fileName = $code . '.txt';
+session_id($code);
+//error_log("Session (c) " . $code);
 
-$file = fopen('/mix_files/' . $fileName, "w");
-fwrite($file, $ids . PHP_EOL);
-fwrite($file, $name . PHP_EOL);
-fwrite($file, $imageNum);
-fclose($file);
+$sessionStr = '';
+$sessionStr .= $ids . ';';
+$sessionStr .= $name . ';';
+$sessionStr .= $imageNum;
+
+//$file = fopen('/mix_files/' . $fileName, "w");
+//fwrite($file, $ids . PHP_EOL);
+//fwrite($file, $name . PHP_EOL);
+//fwrite($file, $imageNum);
+//fclose($file);
+session_start();
+$_SESSION[$code] = $sessionStr;
+
 $redirect = 'https://timstwitterlisteningparty.com/pages/mixtape.html';
 
 if (strpos($_SERVER['DOCUMENT_ROOT'], 'lbavyjjs') > 0) {
