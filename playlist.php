@@ -28,7 +28,7 @@ $userInfo = json_decode($result, TRUE);
 $userId = $userInfo['id'];
 
 // Get track ids
-$fileName = './files/' . $filePrefix . '.txt';
+$fileName = '/mix_files/' . $filePrefix . '.txt';
 $contents = file_get_contents($fileName);
 
 if ($contents === FALSE) {
