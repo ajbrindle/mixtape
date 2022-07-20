@@ -10,7 +10,7 @@ $bytes = openssl_random_pseudo_bytes(16);
 $code = bin2hex($bytes);
 $fileName = $code . '.txt';
 
-$file = fopen('./files/' . $fileName, "w");
+$file = fopen('/mix_files/' . $fileName, "w");
 fwrite($file, $ids . PHP_EOL);
 fwrite($file, $name . PHP_EOL);
 fwrite($file, $imageNum);
