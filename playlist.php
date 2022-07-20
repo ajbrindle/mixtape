@@ -5,6 +5,7 @@ require_once(__DIR__ . '/authUtil.php');
 $code = $_GET['code'];
 $filePrefix = $_GET['state'];
 session_id($filePrefix);
+session_save_path('/tmp');
 session_start();
 //error_log("Session (m) " . $filePrefix);
 //error_log('Stored data: ' . $_SESSION[$filePrefix]);
@@ -62,7 +63,9 @@ if (strlen($name) == 0) {
 $trackUris = explode(',', $ids);
 shuffle($trackUris);
 for($i=0; $i<sizeof($trackUris); $i++) {
-    $trackUris[$i] = 'spotify:track:' . $trackUris[$i];
+    if(strlen($trackUris[$i]) > 5) {
+        $trackUris[$i] = 'spotify:track:' . $trackUris[$i];
+    }
 }
 
 $playlistId = '';

@@ -9,6 +9,7 @@ $imageNum = $_POST['image'];
 $bytes = openssl_random_pseudo_bytes(16);
 $code = bin2hex($bytes);
 session_id($code);
+session_save_path('/tmp');
 //error_log("Session (c) " . $code);
 
 $sessionStr = '';
